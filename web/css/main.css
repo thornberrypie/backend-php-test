@@ -5,3 +5,16 @@ body {
 .login-form > div {
     margin-top: 10px;
 }
+
+.app-fadeout {
+  animation: fade-in 3s ease-in forwards, fade-out 1s 3s ease-out forwards;
+}
+
+@keyframes fade-in {
+  100% { opacity: 1 }
+}
+
+@keyframes fade-out {
+  0% { opacity: 1 }
+  100% { opacity: 0 }
+}

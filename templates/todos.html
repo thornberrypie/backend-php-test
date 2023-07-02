@@ -32,5 +32,11 @@
             </form>
         </tr>
     </table>
+    {% for message in app.session.flashBag.get('added') %}
+        <aside class="alert alert-success app-fadeout text-center">{{ message }}</aside>
+    {% endfor %}
+    {% for message in app.session.flashBag.get('deleted') %}
+        <aside class="alert alert-success app-fadeout text-center">{{ message }}</aside>
+    {% endfor %}
 </div>
 {% endblock %}
