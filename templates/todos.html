@@ -4,7 +4,7 @@
 <div class="col-md-4 col-md-offset-4">
     <h1>Todo List:</h1>
     <table class="table table-striped">
-        <th>#</th><th>User</th><th>Description</th><th></th>
+        <th>#</th><th>User</th><th>Description</th><th>Completed</th><th></th>
         {% for todo in todos %}
             <tr>
                 <td>{{ todo.id }}</td>
@@ -14,6 +14,11 @@
                        {{ todo.description }}
                     </a>
                 </td>
+                <td class="text-center">
+                    <form method="post" action="{{ app.request.baseurl }}/todo/complete/{{ todo.id }}">
+                        <input class="app-completed" {% if todo.completed %}checked{% endif %} name="completed" type="checkbox" />
+                    </form>
+                </td>
                 <td>
                     <form method="post" action="{{ app.request.baseurl }}/todo/delete/{{ todo.id }}">
                         <button type="submit" class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-remove glyphicon-white"></span></button>
@@ -22,7 +27,7 @@
             </tr>
         {% endfor %}
         <tr>
-            <td colspan="4">
+            <td colspan="5">
                 <form method="post" action="{{ app.request.baseurl }}/todo/add" class="flex">
                     <input type="textbox" name="description" class="small-6 small-center" placeholder="Description...">
                     <button type="submit" class="btn btn-sm btn-primary">Add</button>
@@ -30,14 +35,15 @@
             </td>
         </tr>
     </table>
+    <aside id="app-messages"></aside>
     {% for message in app.session.flashBag.get('description') %}
-        <aside class="alert alert-danger text-center">{{ message }}</aside>
+        <aside class="alert alert-danger app-fadeout">{{ message }}</aside>
     {% endfor %}
     {% for message in app.session.flashBag.get('added') %}
-        <aside class="alert alert-success app-fadeout text-center">{{ message }}</aside>
+        <aside class="alert alert-success app-fadeout">{{ message }}</aside>
     {% endfor %}
     {% for message in app.session.flashBag.get('deleted') %}
-        <aside class="alert alert-success app-fadeout text-center">{{ message }}</aside>
+        <aside class="alert alert-warning app-fadeout">{{ message }}</aside>
     {% endfor %}
 </div>
 {% endblock %}

@@ -98,3 +98,15 @@ $app->match('/todo/delete/{id}', function ($id, Request $request) use ($app) {
 
     return $app->redirect('/todo');
 });
+
+$app->match('/todo/complete/{id}', function ($id, Request $request) use ($app) {
+
+    $completed = !$request->get('completed') ? 0 : 1;
+
+    $sql = "UPDATE todos SET completed = $completed WHERE id = '$id'";
+    $app['db']->executeUpdate($sql);
+
+    $request->getSession()->getFlashBag()->add('deleted', 'Todo completed');
+
+    return $app->redirect('/todo');
+});

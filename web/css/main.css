@@ -10,6 +10,10 @@ body {
   animation: fade-in 3s ease-in forwards, fade-out 1s 3s ease-out forwards;
 }
 
+.alert {
+  text-align: center;
+}
+
 .flex {
   display: flex;
   justify-content: space-between;
