@@ -2,13 +2,21 @@
 
 {% block content %}
 <div class="col-md-4 col-md-offset-4">
-    <h1>Todo:</h1>
+    <header class="flex">
+        <h1>Todo:</h1>
+        <a class="app-toggle" href="{{ app.request.baseurl }}/todo/{{ todo.id }}/json">View JSON</a>
+    </header>
     <table class="table table-striped">
-        <th>#</th><th>User</th><th>Description</th><th></th>
+        <th>#</th><th>User</th><th>Description</th><th>Completed</th><th></th>
         <tr>
             <td>{{ todo.id }}</td>
             <td>{{ todo.user_id }}</td>
             <td>{{ todo.description }}</td>
+            <td class="text-center">
+                <form method="post" action="{{ app.request.baseurl }}/todo/complete/{{ todo.id }}">
+                    <input class="app-completed" {% if todo.completed %}checked{% endif %} name="completed" type="checkbox" />
+                </form>
+            </td>
             <td>
                 <form method="post" action="{{ app.request.baseurl }}/todo/delete/{{ todo.id }}">
                     <button type="submit" class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-remove glyphicon-white"></span></button>
@@ -16,6 +24,7 @@
             </td>
         </tr>
     </table>
+    <aside id="app-messages"></aside>
 </div>
 
 {% endblock %}

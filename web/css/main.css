@@ -10,11 +10,16 @@ body {
   animation: fade-in 3s ease-in forwards, fade-out 1s 3s ease-out forwards;
 }
 
+.app-toggle {
+  margin-bottom: 10px;
+}
+
 .alert {
   text-align: center;
 }
 
 .flex {
+  align-items: flex-end;
   display: flex;
   justify-content: space-between;
 }

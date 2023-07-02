@@ -65,6 +65,17 @@ $app->get('/todo/{id}', function ($id) use ($app) {
 })
 ->value('id', null);
 
+$app->match('/todo/{id}/json', function ($id, Request $request) use ($app) {
+
+    $sql = "SELECT * FROM todos WHERE id = '$id'";
+    $todo = $app['db']->fetchAssoc($sql);
+
+    return $app['twig']->render('todo-json.html', [
+        'todo' => $todo,
+        'todo_json' => json_encode($todo),
+    ]);
+});
+
 
 $app->post('/todo/add', function (Request $request) use ($app) {
     if (null === $user = $app['session']->get('user')) {

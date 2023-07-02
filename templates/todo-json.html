@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="col-md-4 col-md-offset-4">
+    <header class="flex">
+        <h1>Todo:</h1>
+        <a class="app-toggle" href="{{ app.request.baseurl }}/todo/{{ todo.id }}">Hide JSON</a>
+    </header>
+    <table class="table">
+        <tr><td>{{ todo_json }}</td></tr>
+    </table>
+</div>
+
+{% endblock %}
