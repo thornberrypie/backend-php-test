@@ -22,14 +22,12 @@
             </tr>
         {% endfor %}
         <tr>
-            <form method="post" action="{{ app.request.baseurl }}/todo/add">
-                <td colspan="3">
+            <td colspan="4">
+                <form method="post" action="{{ app.request.baseurl }}/todo/add" class="flex">
                     <input type="textbox" name="description" class="small-6 small-center" placeholder="Description...">
-                </td>
-                <td>
                     <button type="submit" class="btn btn-sm btn-primary">Add</button>
-                </td>
-            </form>
+                </form>
+            </td>
         </tr>
     </table>
     {% for message in app.session.flashBag.get('description') %}
